@@ -1,0 +1,13 @@
+{
+    "commands": {
+        "build": "gcc KeepTrack.c -o Kapp.o",
+        "run": "./Kapp.o"
+    },
+    "messages": {
+        "building": true,
+        "buildSuccess": true,
+        "buildError": true,
+        "buildErrorMessageBox": true,
+        "run": true
+    }
+}

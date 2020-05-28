@@ -1,0 +1,3 @@
+2
+gas 40
+electric 100
