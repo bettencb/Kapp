@@ -11,7 +11,6 @@
 * unchanged from the sequential version.
 *
 */
-
 typedef struct
  { 
    char name[10][20];     // stores the memory address of an char (ptr "points to" an int)
