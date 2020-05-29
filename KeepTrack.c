@@ -82,7 +82,7 @@ int write_info()
     //iterates through the data that needs to be written.
     for (int i = 0; i < entry; i++)
     {
-        fprintf(fp, "%s %d\n", sumstr.name[i], &sumstr.x[i]);
+        fprintf(fp, "%s %ls\n", sumstr.name[i], &sumstr.x[i]);
     }
 
     return 0;
@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
         //prints the data entered by the user, and the total amount owed
         printf("After adding %s for %d, the total is at %d.\n", sumstr.name[entry], sumstr.x[entry], total);
     }
-    
+
     //check to see if data was wrote correctly
     if (write_info() == 0)
         printf("File was wrote successfully\n");
