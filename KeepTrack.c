@@ -35,10 +35,10 @@ void get_info()
 */
 int read_info()
 {
-    fp = fopen(FILENAME, "r");
+    fpr = fopen(FILENAME, "r");
 
     //notify bad file read
-    if (fp == NULL)
+    if (fpr == NULL)
     {
         printf("Could not open file %s", FILENAME);
         return 1;
@@ -46,7 +46,7 @@ int read_info()
 
     entry = 0;
     //gets the strings one line at a time
-    while (fgets(buffer, MAXCHAR, fp) != NULL)
+    while (fgets(buffer, MAXCHAR, fpr) != NULL)
     {
         sscanf(buffer, "%s %d", sumstr.name[entry], &sumstr.x[entry]);
 
@@ -56,7 +56,7 @@ int read_info()
         total += sumstr.x[entry];
         entry++;
     }
-
+    fclose(fpr);
     return 0;
 }
 
@@ -69,22 +69,13 @@ int read_info()
 */
 int write_info()
 {
-    fopen(FILENAME, "w");
-
-    //check that the file can be written.
-    if (fp == NULL)
+    fpw = fopen(FILENAME, "w");
+    for(int i = 0; i <= entry; i++)
     {
-        printf("Error! opening file\n");
-        // Program exits if the file pointer returns NULL.
-        return (1);
+        sprintf(buffer, "%s %d\n", sumstr.name[i], sumstr.x[i]);
+        fputs(buffer, fpw);
     }
-
-    //iterates through the data that needs to be written.
-    for (int i = 0; i < entry; i++)
-    {
-        fprintf(fp, "%s %ls\n", sumstr.name[i], &sumstr.x[i]);
-    }
-
+    fclose(fpw);
     return 0;
 }
 
@@ -116,8 +107,6 @@ int main(int argc, char *argv[])
         printf("File was wrote successfully\n");
     else
         printf("The information was not recorded\n");
-
-    fclose(fp);
 
     return 0;
 }

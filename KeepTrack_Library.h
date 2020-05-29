@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#define MAXCHAR 20
+#define MAXARRAY 10
+#define FILENAME ".data.txt"
 /*  KeepTrack_Library.h
 *
 * The following structure contains the necessary information  
@@ -14,19 +16,18 @@
 
 typedef struct
  { 
-   char name[10][20];     // stores the memory address of an char (ptr "points to" an int)
-   int  x[10];        // stores the memory address of a int (cptr "points to" a char)
+   char name[MAXARRAY][MAXCHAR];     // stores the memory address of an char (ptr "points to" an int)
+   int  x[MAXARRAY];        // stores the memory address of a int (cptr "points to" a char)
  } STRINGDATA;
 
 
 /* DEFINE:
 * globally accessible variables and a mutex 
 */
-#define MAXCHAR 20
-#define FILENAME ".data.txt"
+
 char buffer[MAXCHAR];
 int total;
 int entry;
 int buf;
-FILE *fp;
+FILE *fpr, *fpw;
    STRINGDATA sumstr; 
