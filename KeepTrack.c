@@ -3,7 +3,7 @@
 * DESCRIPTION:
 *   An app meant to track money exchanges between two people
 * SOURCE: Blaine Bettencourt, KSU
-* LAST REVISED: 05/22/20 Blaine Bettencourt
+* LAST REVISED: 05/28/20 Blaine Bettencourt
 ******************************************************************************/
 #include "KeepTrack_Library.h"
 
