@@ -17,10 +17,12 @@ void get_info()
     /* Enter the name for whats being given */
     printf("\nEnter a title for the amount: ");
     scanf("%s", sumstr.name[entry]);
+
     /* Enter the amount */
     printf("Enter the amount amount: ");
     scanf("%d", &sumstr.x[entry]);
     /* Amount is added to total and then all data is printed on command line */
+
     total = sumstr.x[entry] + total;
 }
 
@@ -33,39 +35,47 @@ void get_info()
 */
 int read_info()
 {
-    FILE *fp;
-    char* filename = FILENAME; //FILENAME contains the hidden file for data (.data.txt)
+    fpr = fopen(FILENAME, "r");
 
-    fp = fopen(filename, "r");
-    //bad file read
-    if (fp == NULL){
-        printf("Could not open file %s",filename);
+    //notify bad file read
+    if (fpr == NULL)
+    {
+        printf("Could not open file %s", FILENAME);
         return 1;
     }
-    
+
     entry = 0;
     //gets the strings one line at a time
-    while (fgets(buffer, MAXCHAR, fp) != NULL)
+    while (fgets(buffer, MAXCHAR, fpr) != NULL)
     {
-        if (r == 0)
-        {
-            //str = (char *) &buffer;
-            sscanf(buffer, "%d", &sumstr.num); //parse through the data here
-            r++;
-        }
-        if (r > 1)
-        {
-            //str = (char *) &buffer;
-            sscanf(buffer, "%s %d", sumstr.name[entry], &buf);
-            printf( "Entry %d) %s ", entry, sumstr.name[entry]);
-            printf( "%d \n", buf);
-            total += buf;
-        }
-        r++;
+        sscanf(buffer, "%s %d", sumstr.name[entry], &sumstr.x[entry]);
+
+        printf("Entry %d) %s ", entry+1, sumstr.name[entry]);
+        printf("%d \n", sumstr.x[entry]);
+
+        total += sumstr.x[entry];
         entry++;
     }
-    fclose(fp);
-    r = 0;
+    fclose(fpr);
+    return 0;
+}
+
+/*  INT WRITE_INFO()
+*
+*  Writes the data into .data.txt file parsing through
+*  the entries recorded and the total amount from the
+*  data that was read into the file and the users input.
+*
+*/
+int write_info()
+{
+    fpw = fopen(FILENAME, "w");
+    for(int i = 0; i <= entry; i++)
+    {
+        sprintf(buffer, "%s %d\n", sumstr.name[i], sumstr.x[i]);
+        fputs(buffer, fpw);
+    }
+    fclose(fpw);
     return 0;
 }
 
@@ -76,18 +86,15 @@ int read_info()
 *  input, and lastly write in the new data. It also checks
 *  that the data read function ran correctly.
 *
-*  functions used: int read_info(), void get_info(), int write_info() <-- verify successfully written and print SUCCESS
+*  functions used: int read_info(), void get_info(), int write_info()
 */
-int main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
+    //initiate variables
     total = 0;
-    r = 0;
-    int success;
-    //call for function to get stored data
-    success = read_info();
 
     //check to see if data was read correctly
-    if (success == 0)
+    if (read_info() == 0)
     {
         //call for function to get user data
         get_info();
@@ -95,5 +102,11 @@ int main (int argc, char *argv[])
         printf("After adding %s for %d, the total is at %d.\n", sumstr.name[entry], sumstr.x[entry], total);
     }
 
+    //check to see if data was wrote correctly
+    if (write_info() == 0)
+        printf("File was wrote successfully\n");
+    else
+        printf("The information was not recorded\n");
+
     return 0;
-}   
+}
