@@ -104,9 +104,9 @@ int main(int argc, char *argv[])
 
     //check to see if data was wrote correctly
     if (write_info() == 0)
-        printf("File was wrote successfully\n");
+        printf("File was wrote successfully\n\n");
     else
-        printf("The information was not recorded\n");
+        printf("The information was not recorded\n\n");
 
     return 0;
 }
