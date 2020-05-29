@@ -11,7 +11,6 @@
 * to allow the function "sum_of_string" to access its input data and 
 * place its output into the structure.  This structure is 
 * unchanged from the sequential version.
-*
 */
 typedef struct
  { 
@@ -23,7 +22,6 @@ typedef struct
 /* DEFINE:
 * globally accessible variables and a mutex 
 */
-
 char buffer[MAXCHAR];
 int total;
 int entry;
