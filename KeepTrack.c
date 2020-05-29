@@ -10,7 +10,6 @@
 /*   VOID GET_INFO()
 *
 *  Gets the input from a user that is to be added to the file
-*
 */
 void get_info()
 {
@@ -21,7 +20,6 @@ void get_info()
     /* Enter the amount */
     printf("Enter the transaction amount: ");
     scanf("%d", &sumstr.x[entry]);
-    /* Amount is added to total and then all data is printed on command line */
 
     total = sumstr.x[entry] + total;
 }
@@ -31,7 +29,6 @@ void get_info()
 *  Reads the data file in and parses through the data
 *  printing out the entries recorded and the total amount
 *  from the data read into the file.
-*
 */
 int read_info()
 {
@@ -45,7 +42,7 @@ int read_info()
     }
 
     entry = 0;
-    //gets the strings one line at a time
+    //gets the strings from the file one line at a time
     while (fgets(buffer, MAXCHAR, fpr) != NULL)
     {
         sscanf(buffer, "%s %d", sumstr.name[entry], &sumstr.x[entry]);
@@ -65,7 +62,6 @@ int read_info()
 *  Writes the data into .data.txt file parsing through
 *  the entries recorded and the total amount from the
 *  data that was read into the file and the users input.
-*
 */
 int write_info()
 {
