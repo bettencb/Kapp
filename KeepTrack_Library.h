@@ -16,7 +16,6 @@ typedef struct
  { 
    char name[10][20];     // stores the memory address of an char (ptr "points to" an int)
    int  x[10];        // stores the memory address of a int (cptr "points to" a char)
-   int  num;     // store the number of entries
  } STRINGDATA;
 
 
@@ -27,7 +26,7 @@ typedef struct
 #define FILENAME ".data.txt"
 char buffer[MAXCHAR];
 int total;
-int r;
 int entry;
 int buf;
+FILE *fp;
    STRINGDATA sumstr; 
