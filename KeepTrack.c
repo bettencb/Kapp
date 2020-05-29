@@ -15,11 +15,11 @@
 void get_info()
 {
     /* Enter the name for whats being given */
-    printf("\nEnter a title for the amount: ");
+    printf("\nEnter a title for the transaction: ");
     scanf("%s", sumstr.name[entry]);
 
     /* Enter the amount */
-    printf("Enter the amount amount: ");
+    printf("Enter the transaction amount: ");
     scanf("%d", &sumstr.x[entry]);
     /* Amount is added to total and then all data is printed on command line */
 
@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
         //call for function to get user data
         get_info();
         //prints the data entered by the user, and the total amount owed
-        printf("After adding %s for %d, the total is at %d.\n", sumstr.name[entry], sumstr.x[entry], total);
+        printf("After adding %s for $%d, the total is at $%d.\n", sumstr.name[entry], sumstr.x[entry], total);
     }
 
     //check to see if data was wrote correctly
